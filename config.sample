@@ -1,0 +1,11 @@
+import { IConfig } from './IConfig';
+
+const config: IConfig = {
+  http: {
+    host: '::',
+    port: 3000,
+  },
+  db: 'mongodb://mongo:27017/test',
+};
+
+export default <IConfig>config;

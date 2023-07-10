@@ -1,0 +1,33 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "(^I[A-Z]|^Request$|^Response$|^User$)",
+          "match": true
+        }
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow"
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/return-await": "error"
+  }
+}
