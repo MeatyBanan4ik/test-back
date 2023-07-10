@@ -1,7 +1,17 @@
+FROM node:lts as Builder
+
+WORKDIR /worker
+
+COPY ./ /worker
+
+RUN make build
+
+################################################################################
+############################## Build clear app image ###########################
+
 FROM node:lts-alpine
 
-WORKDIR /home/node/worker
+COPY --from=Builder /worker /worker
+WORKDIR /worker
 
-COPY ./ /home/node/worker
-
-CMD [ "yarn", "dev" ]
+CMD ["yarn", "start"]
