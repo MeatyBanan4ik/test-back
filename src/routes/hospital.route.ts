@@ -9,5 +9,6 @@ const router = Router();
 router.post('/', HttpValidator(CreateHospitalHttpValidator), CallHttpHandler(HospitalHttpHandler, 'create'));
 router.delete('/', CallHttpHandler(HospitalHttpHandler, 'clear'));
 router.get('/appointments', CallHttpHandler(HospitalHttpHandler, 'getAppointments'));
+router.put('/appointments', CallHttpHandler(HospitalHttpHandler, 'updateAppointments'));
 
 export default router;

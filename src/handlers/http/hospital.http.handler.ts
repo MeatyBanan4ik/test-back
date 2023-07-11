@@ -18,4 +18,14 @@ export default class HospitalHttpHandler extends HttpHandler {
 
     res._success({ data });
   }
+
+  async updateAppointments(req: Request, res: Response) {
+    const { appointments } = req.body;
+
+    const appointmentService = new AppointmentService();
+
+    await appointmentService.update(appointments);
+
+    res._success();
+  }
 }
