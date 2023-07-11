@@ -78,7 +78,7 @@ export default class HospitalService {
 
       total = appointmentTotal;
       skip += limit;
-    } while (total < skip + limit);
+    } while (total > skip + limit);
 
     SocketService.sendMessage('create', items);
 

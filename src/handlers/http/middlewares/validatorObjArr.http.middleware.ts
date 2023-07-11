@@ -51,10 +51,10 @@ export default (Validator: TValidator<IValidator>) =>
               }
 
               if (!(key in req._unvalidated)) {
-                return (req._unvalidated[key] = [{ errors: errorItems[`${key}.${index}`], ...item }]);
+                return (req._unvalidated[key] = [{ error: errorItems[`${key}.${index}`][0], ...item }]);
               }
 
-              return req._unvalidated[key].push({ errors: errorItems[`${key}.${index}`], ...item });
+              return req._unvalidated[key].push({ error: errorItems[`${key}.${index}`][0], ...item });
             });
           });
 

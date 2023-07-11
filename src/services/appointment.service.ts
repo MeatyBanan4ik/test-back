@@ -9,7 +9,6 @@ export default class AppointmentService extends Service {
   async getList({
     limit = 10,
     skip = 0,
-    filters = {},
     sort = { createdAt: -1 },
   }: {
     limit?: any;
@@ -18,7 +17,6 @@ export default class AppointmentService extends Service {
     sort?: any;
   }) {
     const query = [
-      { $match: filters },
       {
         $lookup: {
           from: 'patients',
@@ -41,7 +39,7 @@ export default class AppointmentService extends Service {
       {
         $facet: {
           total: [{ $group: { _id: null, total: { $sum: 1 } } }],
-          items: [{ $skip: skip }, { $limit: limit }],
+          items: [{ $skip: Number(skip) }, { $limit: Number(limit) }],
         },
       },
       { $unwind: '$total' },
@@ -53,6 +51,6 @@ export default class AppointmentService extends Service {
       },
     ];
 
-    return this.model.aggregate(query);
+    return (await this.model.aggregate(query))[0] || { total: 0, items: [] };
   }
 }

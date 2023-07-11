@@ -10,10 +10,12 @@ export default class HospitalHttpHandler extends HttpHandler {
   }
 
   async getAppointments(req: Request, res: Response) {
-    const { limit = 10, skip = 0, filters = {}, sort = { createdAt: -1 } } = req.query;
+    const { limit = 10, skip = 0, sort = { createdAt: -1 } } = req.query;
 
     const appointmentService = new AppointmentService();
 
-    res._success({ data: await appointmentService.getList({ filters, limit, skip, sort }) });
+    const data = await appointmentService.getList({ limit, skip, sort });
+
+    res._success({ data });
   }
 }
