@@ -14,7 +14,7 @@ const schema = new Schema<IAppointmentDocument, TAppointmentModel>(
   {
     doctor: { type: Number, required: true },
     patient: { type: Number, required: true },
-    timeStart: { type: Number, required: true },
+    timeStart: { type: Number },
   },
   {
     timestamps: true,
